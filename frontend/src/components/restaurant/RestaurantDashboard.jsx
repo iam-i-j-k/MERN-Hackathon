@@ -11,7 +11,7 @@ const RestaurantDashboard = () => {
   // Fetch Restaurant Profile
   const fetchProfile = async () => {
   try {
-    const res = await axios.get("http://localhost:8000/api/restaurant/profile", {
+    const res = await axios.get(`${import.meta.env.REACT_APP_BACKEND_URL}/api/restaurant/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -27,7 +27,7 @@ const RestaurantDashboard = () => {
   // Fetch Orders
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/restaurant/orders",
+      const res = await axios.get(`${import.meta.env.REACT_APP_BACKEND_URL}/api/restaurant/orders`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -43,7 +43,7 @@ const RestaurantDashboard = () => {
   // Update Order Status
   const updateOrderStatus = async (orderId, status) => {
     try {
-      const res = await axios.put(`http://localhost:8000/api/restaurant/orders/${orderId}`,
+      const res = await axios.put(`${import.meta.env.REACT_APP_BACKEND_URL}/api/restaurant/orders/${orderId}`,
         {
             headers: {
                 Authorization: `Bearer ${token}`,

@@ -9,7 +9,7 @@ const UsersPage = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("token"); // get token from storage
-      const res = await axios.get("http://localhost:8000/api/admin/viewUsers", {
+      const res = await axios.get(`${import.meta.env.REACT_APP_BACKEND_URL}/api/admin/viewUsers`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,7 +30,7 @@ const UsersPage = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8000/api/admin/deleteUser/${id}`, {
+      await axios.delete(`${import.meta.env.REACT_APP_BACKEND_URL}/api/admin/deleteUser/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

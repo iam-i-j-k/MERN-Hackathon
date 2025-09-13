@@ -42,7 +42,7 @@ const AdminLogin = () => {
     if (!validate()) return;
 
     try {
-      const res = await fetch("http://localhost:8000/api/admin/login", {
+      const res = await fetch(`${import.meta.env.REACT_APP_BACKEND_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

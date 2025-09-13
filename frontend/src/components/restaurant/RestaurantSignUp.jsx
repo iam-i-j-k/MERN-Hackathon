@@ -73,7 +73,7 @@ const RestaurantSignUp = () => {
     if (!validate()) return
 
     try {
-      const res = await fetch("http://localhost:8000/api/admin/register", {
+      const res = await fetch(`${import.meta.env.REACT_APP_BACKEND_URL}/api/admin/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

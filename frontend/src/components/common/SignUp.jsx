@@ -58,7 +58,7 @@ const SignUp = () => {
     if (!validate()) return
 
     try {
-      const res = await fetch("http://localhost:8000/api/user/register", {
+      const res = await fetch(`${import.meta.env.REACT_APP_BACKEND_URL}/api/user/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

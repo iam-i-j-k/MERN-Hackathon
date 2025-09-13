@@ -9,7 +9,7 @@ const RestaurantsPage = () => {
   const fetchRestaurants = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:8000/api/admin/viewRestaurants", {
+      const res = await axios.get(`${import.meta.env.REACT_APP_BACKEND_URL}/api/admin/viewAllRestaurants`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -30,7 +30,7 @@ const RestaurantsPage = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8000/api/admin/deleteRestaurant/${id}`, {
+      await axios.delete(`${import.meta.env.REACT_APP_BACKEND_URL}/api/admin/deleteRestaurant/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
