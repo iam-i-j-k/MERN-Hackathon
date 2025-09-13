@@ -113,6 +113,30 @@ const RestaurantSignUp = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 relative">
+        <img
+        src="https://b.zmtcdn.com/data/o2_assets/b4f62434088b0ddfa9b370991f58ca601743060218.png"
+        className="absolute  right-[10%] top-[15%] z-30 aspect-[420/370] w-[120px] md:w-[min(24%,240px)] rounded-lg  xl:right-[15%] xl:top-8 "
+      />
+      <img
+        src="https://b.zmtcdn.com/data/o2_assets/9ef1cc6ecf1d92798507ffad71e9492d1742892584.png"
+        className=" absolute   right-[12%] xl:right-[8%] xl:bottom-[55%] w-8 xl:w-12 aspect-[158/125] rotate-45"
+      />
+      <img
+        src="https://b.zmtcdn.com/data/o2_assets/316495f4ba2a9c9d9aa97fed9fe61cf71743059024.png"
+        className="absolute right-[12%] bottom-[10%] xl:bottom-10  xl:right-[10%] aspect-square w-[124px] md:w-[min(24%,240px)]  rounded-lg "
+      />
+      <img
+        src="https://b.zmtcdn.com/data/o2_assets/70b50e1a48a82437bfa2bed925b862701742892555.png"
+        className=" absolute top-[10%] left-[30%] w-8 xl:w-12 aspect-[92/67] rotate-2"
+      />
+      <img
+        src="https://b.zmtcdn.com/data/o2_assets/110a09a9d81f0e5305041c1b507d0f391743058910.png"
+        className="absolute  top-[40%] w-[130px]  md:w-[min(22%,240px)]  rounded-lg left-[8%] xl:left-[15%]  "
+      />
+      <img
+        src="https://b.zmtcdn.com/data/o2_assets/9ef1cc6ecf1d92798507ffad71e9492d1742892584.png"
+        className=" absolute bottom-[10%] left-[20%] xl:bottom-[2%] xl:left-[10%] w-8 xl:w-12 aspect-[158/125] -rotate-2"
+      />
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-md w-96">
         <h2 className="text-2xl font-bold mb-6 text-center">Restaurant Sign Up</h2>
 
@@ -224,7 +248,7 @@ const RestaurantSignUp = () => {
         <div className="p-3 text-center">
           <p>
             Already have an account?
-            <a href="/admin/login" className="px-1 underline text-orange-500">
+            <a href="/restaurant/login" className="px-1 underline text-orange-500">
               Login
             </a>
           </p>

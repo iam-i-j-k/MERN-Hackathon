@@ -32,7 +32,7 @@ const AppContent = () => {
       <CheckConnection />
 
       {/* Navbar shown only if NOT on landing page */}
-      {location.pathname !== "/" && location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname!=="/admin/dashboard" && location.pathname!=="/admin/users" && location.pathname!=="/admin/restaurants" && location.pathname!=="/admin/login" && location.pathname!=="/restaurant/login" && location.pathname!=="/restaurant/signup" && <Navbar />}
+      {location.pathname !== "/" && location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname!=="/admin/dashboard" && location.pathname!=="/admin/users" && location.pathname!=="/admin/restaurants" && location.pathname!=="/admin/login" && location.pathname!=="/restaurant/login" && location.pathname!=="/restaurant/signup" && location.pathname!=="/restaurant/dashboard" && <Navbar />}
 
       <Routes>
         <Route path="/" element={<LandingPage />} />

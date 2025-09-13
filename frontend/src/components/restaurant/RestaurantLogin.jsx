@@ -151,7 +151,7 @@ const RestaurantLogin = () => {
         <div className="p-3">
           <p>
             Don't have an Account?
-            <a href="/signup" className="px-1 underline text-orange-500">
+            <a href="/restaurant/signup" className="px-1 underline text-orange-500">
               Sign Up
             </a>
           </p>

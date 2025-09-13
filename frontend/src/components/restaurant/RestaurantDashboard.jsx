@@ -7,20 +7,33 @@ const RestaurantDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("profile");
 
+  const token = localStorage.getItem("token");
   // Fetch Restaurant Profile
   const fetchProfile = async () => {
-    try {
-      const res = await axios.get("http://localhost:8000/api/restaurant/profile");
-      if (res.data.status) setRestaurant(res.data.restaurant);
-    } catch (error) {
-      console.error("Profile Fetch Error:", error);
-    }
-  };
+  try {
+    const res = await axios.get("http://localhost:8000/api/restaurant/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (res.data.status) setRestaurant(res.data.restaurant);
+  } catch (error) {
+    console.error("Profile Fetch Error:", error.response?.data || error.message);
+  }
+};
+
 
   // Fetch Orders
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("/api/restaurant/orders");
+      const res = await axios.get("http://localhost:8000/api/restaurant/orders",
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+      );
       if (res.data.status) setOrders(res.data.orders);
     } catch (error) {
       console.error("Orders Fetch Error:", error);
@@ -30,7 +43,12 @@ const RestaurantDashboard = () => {
   // Update Order Status
   const updateOrderStatus = async (orderId, status) => {
     try {
-      const res = await axios.put(`/api/restaurant/orders/${orderId}`, { status });
+      const res = await axios.put(`http://localhost:8000/api/restaurant/orders/${orderId}`,
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }, { status });
       if (res.data.status) {
         setOrders(orders.map(o => (o.id === orderId ? { ...o, status } : o)));
       }
@@ -72,7 +90,7 @@ const RestaurantDashboard = () => {
       {activeTab === "profile" && (
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-semibold mb-4">Restaurant Profile</h2>
-          <img src={restaurant.image} alt={restaurant.name} className="w-32 h-32 rounded mb-4" />
+          <img src={restaurant?.image} alt={restaurant.name} className="w-32 h-32 rounded mb-4" />
           <p><strong>Name:</strong> {restaurant.name}</p>
           <p><strong>Cuisine:</strong> {restaurant.cuisine}</p>
           <p><strong>Location:</strong> {restaurant.location}</p>
@@ -90,7 +108,7 @@ const RestaurantDashboard = () => {
             {restaurant.menu.map(item => (
               <li key={item.id} className="flex justify-between border-b py-2">
                 <span>{item.name} - ${item.price}</span>
-                <span>{item.available ? "✅ Available" : "❌ Not Available"}</span>
+                <span>{item.available ? "Available" : "Not Available"}</span>
               </li>
             ))}
           </ul>

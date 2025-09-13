@@ -1,10 +1,9 @@
-// controllers/restaurantController.js
 
 const { prisma } = require("../config/db");
 
 // -------------------- Get Restaurant Profile --------------------
 exports.getRestaurantProfile = async (req, res) => {
-  const restaurantId = req.restaurant.id; // from auth middleware
+  const restaurantId = req.restaurant.id; 
 
   try {
     const restaurant = await prisma.restaurant.findUnique({

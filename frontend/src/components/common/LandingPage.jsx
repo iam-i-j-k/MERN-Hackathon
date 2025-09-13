@@ -48,6 +48,12 @@ const LandingPage = () => {
           >
             Admin Panel
           </button>
+          <button
+          onClick={()=>navigate('/restaurant/login')}
+            className="px-6 py-3 cursor-pointer bg-orange-600 rounded-lg hover:bg-orange-700 transition"
+          >
+            Restaurant Panel
+          </button>
         </div>
       </div>
     </div>
