@@ -1,3 +1,5 @@
+// schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,16 +10,93 @@ datasource db {
 }
 
 model User {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  first_name  String
-  last_name   String
-  createdAt   DateTime  @default(now()) //current TimeStamp
-  email       String    @unique
-  role        Role      @default(USER)
-  password    String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+
+  // relations
+  orders  Order[]
+  reviews Review[]
 }
 
-enum Role{
+enum Role {
   USER
   ADMIN
+  RESTAURANT
+}
+
+model Restaurant {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  password  String
+  cuisine   String
+  location  String
+  image     String?
+  createdAt DateTime @default(now())
+
+  menu    FoodItem[]
+  orders  Order[]
+  reviews Review[]
+}
+
+model Review {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String   @db.ObjectId
+  restaurantId String   @db.ObjectId
+  rating       Int
+  comment      String?
+  createdAt    DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id])
+  restaurant Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+model FoodItem {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  restaurantId String  @db.ObjectId
+  name         String
+  description  String?
+  price        Float
+  image        String
+  available    Boolean @default(true)
+
+  // relations
+  restaurant Restaurant  @relation(fields: [restaurantId], references: [id])
+  orderItems OrderItem[]
+}
+
+model Order {
+  id           String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String      @db.ObjectId
+  restaurantId String      @db.ObjectId
+  totalPrice   Float
+  status       OrderStatus @default(PENDING)
+  createdAt    DateTime    @default(now())
+
+  // relations
+  user       User        @relation(fields: [userId], references: [id])
+  restaurant Restaurant  @relation(fields: [restaurantId], references: [id])
+  items      OrderItem[]
+}
+
+model OrderItem {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  orderId    String @db.ObjectId
+  foodItemId String @db.ObjectId
+  quantity   Int
+
+  // relations
+  order    Order    @relation(fields: [orderId], references: [id])
+  foodItem FoodItem @relation(fields: [foodItemId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PREPARING
+  OUT_FOR_DELIVERY
+  DELIVERED
 }
