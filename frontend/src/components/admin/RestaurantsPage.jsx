@@ -9,7 +9,7 @@ const RestaurantsPage = () => {
   const fetchRestaurants = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/admin/viewAllRestaurants`, {
+      const res = await axios.get(`${import.meta.env.VITE_APP_BACKEND_URL}/api/admin/viewRestaurants`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
