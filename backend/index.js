@@ -16,7 +16,7 @@ const restaurantRouter = require('./routes/restaurantRoutes')
 
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: ["http://localhost:5173", "https://foodie-hub-ordering.vercel.app"]
 }))
 
 app.get('/',(req,res)=>{
