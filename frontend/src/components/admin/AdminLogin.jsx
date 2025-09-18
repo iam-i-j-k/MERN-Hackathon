@@ -42,7 +42,8 @@ const AdminLogin = () => {
     if (!validate()) return;
 
     try {
-      const res = await fetch(`${import.meta.env.REACT_APP_BACKEND_URL}/api/admin/login`, {
+      console.log(import.meta.env.VITE_APP_BACKEND_URL)
+      const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

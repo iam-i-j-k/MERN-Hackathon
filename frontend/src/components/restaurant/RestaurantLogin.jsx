@@ -44,7 +44,7 @@ const RestaurantLogin = () => {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.REACT_APP_BACKEND_URL}/api/restaurant/login`,
+        `${import.meta.env.VITE_APP_BACKEND_URL}/api/restaurant/login`,
         formData,
         {
           headers: { "Content-Type": "application/json" },
